@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>The RStudio Conferene Workshop in RMarkdown</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Zhi Yang, MS   University of Southern California  Department of Preventive Medicine" />
+    <link href="xaringan_example_files/remark-css/default.css" rel="stylesheet" />
+    <link href="xaringan_example_files/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="xaringan_example_files/font-awesome/css/fontawesome-all.min.css" rel="stylesheet" />
+    <script src="xaringan_example_files/htmlwidgets/htmlwidgets.js"></script>
+    <script src="xaringan_example_files/jquery/jquery.min.js"></script>
+    <link href="xaringan_example_files/leaflet/leaflet.css" rel="stylesheet" />
+    <script src="xaringan_example_files/leaflet/leaflet.js"></script>
+    <link href="xaringan_example_files/leafletfix/leafletfix.css" rel="stylesheet" />
+    <script src="xaringan_example_files/Proj4Leaflet/proj4-compressed.js"></script>
+    <script src="xaringan_example_files/Proj4Leaflet/proj4leaflet.js"></script>
+    <link href="xaringan_example_files/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="xaringan_example_files/leaflet-binding/leaflet.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: left, middle, inverse, title-slide
+
+# The RStudio Conferene Workshop in RMarkdown
+### Zhi Yang, MS<br> <span style="font-size: 50%;"> University of Southern California<br> Department of Preventive Medicine</span>
+### RStudio 2019<br><br> <i class="fas  fa-link "></i> <a href="https://arm.rbind.io/days/day1/">Slides</a> <br><i class="fab  fa-twitter "></i> <a href="https://twitter.com/zhiiiyang">zhiiiyang</a>
+
+---
+
+class: inverse, center, middle
+background-image: url("")
+background-size: cover
+# R Markdown Workshop
+&lt;img src="https://github.com/zhiiiyang.png" width="150px"/&gt;
+### USING XARINGAN
+.large[Zhi Yang | RStudio Conference | 15 Jan 2019]
+
+---
+layout: true
+background-image: url(https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png)
+background-position: 5% 95%
+background-size: 10%
+
+---
+class: left 
+name: begin
+
+# Introduce yourself!
+&lt;!-- edit name1 and name2 in the YAML above --&gt;
+
+
+
+
+```r
+# optional package installs if you want to do more below
+install.packages("leaflet")
+```
+
+&lt;!-- introduce yourself here  Hello my name is Zhi Yang, MS&lt;br&gt; &lt;span style = 'font-size: 50%;'&gt; University of Southern California&lt;br&gt; Department of Preventive Medicine&lt;/span&gt;!
+--&gt;
+
+Hello my name is Zhi!
+
+I am a PhD student in biostatistics at USC and my favorite R package is rjags, .left[and a baby rabbit, fluffy]
+
+&lt;!-- include an image here, if you have a GitHub account use your profile pic! --&gt;
+
+
+&lt;img src="https://github.com/zhiiiyang.png" width="30%" align="middle" /&gt;
+
+???
+This is the notes that I can only see 
+
+---
+&lt;!-- we make the data here --&gt;
+
+
+```r
+# getting the data
+namedata &lt;- babynames %&gt;%
+  filter(name == params$name1 | 
+           name == params$name2) %&gt;% 
+* filter(sex == "F")
+
+head(namedata) %&gt;% 
+  knitr::kable()
+```
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; year &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; sex &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; name &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; prop &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1983 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ethan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.5e-06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1984 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ethan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.8e-06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1986 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ethan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.9e-06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1989 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ethan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.5e-06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1990 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ethan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8.3e-06 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1991 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ethan &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.4e-06 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+&lt;!-- get and see top years for each name --&gt;
+
+
+```r
+topyears &lt;- namedata %&gt;% 
+  group_by(name) %&gt;% 
+  top_n(1, prop) 
+```
+
+---
+
+
+```r
+topyears %&gt;% 
+  filter(name == params$name1) 
+```
+
+```
+## # A tibble: 1 x 5
+## # Groups:   name [1]
+*##    year sex   name      n       prop
+*##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;
+## 1  2009 F     Zhi       7 0.00000346
+```
+
+
+
+```r
+topyears %&gt;% 
+  filter(name == params$name2)
+```
+
+```
+## # A tibble: 1 x 5
+## # Groups:   name [1]
+##    year sex   name      n      prop
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;     &lt;dbl&gt;
+## 1  2004 F     Ethan   126 0.0000625
+```
+
+
+---
+&lt;!-- plot name popularity over time --&gt;
+.pull-left[
+
+```r
+ggplot(namedata, 
+  aes(x = year, 
+      y = prop,  
+      group = name, 
+      color = name)) + 
+  geom_line() 
+```
+]
+
+--
+.pull-right[
+&lt;img src="xaringan_example_files/figure-html/unnamed-chunk-2-1.png" width="504" /&gt;
+]
+
+---
+
+.pull-left[
+&lt;img src="xaringan_example_files/figure-html/plot-first-1.png" width="504" /&gt;
+]
+--
+.pull-right[
+
+```r
+ggplot(namedata, 
+  aes(x = year, 
+      y = prop,  
+      group = name, 
+      color = name)) + 
+  geom_line() 
+```
+]
+
+---
+&lt;!-- where are you from? --&gt;
+
+
+
+```r
+# erase this chunk option if you want to include a map
+library(leaflet)
+leaflet() %&gt;% addTiles() %&gt;% setView(lat = 30.2621, lng = -97.7382, zoom = 17)
+```
+
+<div id="htmlwidget-d92345ca5ba1e6877561" style="width:504px;height:504px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d92345ca5ba1e6877561">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]}],"setView":[[30.2621,-97.7382],17,[]]},"evals":[],"jsHooks":[]}</script>
+
+---
+class: inverse, center, middle
+
+background-image: url("img/capebara.jpg")
+background-position: 0% 0%
+background-size: 100%
+
+I add a new picture!
+
+---
+
+
+```r
+# url
+knitr::include_graphics("img/sheep.jpg") 
+```
+
+![](img/sheep.jpg)&lt;!-- --&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

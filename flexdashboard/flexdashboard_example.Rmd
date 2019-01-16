@@ -1,0 +1,62 @@
+---
+title: "RStudio Flexdashboard Example"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(babynames)
+library(tidyverse)
+```
+
+---
+
+# Page 1 
+## Column {data-width=100}
+### Chart A
+
+```{r}
+head(babynames, n = 2)
+```
+
+### Chart B
+
+```{r eval=FALSE, echo=TRUE}
+library(leaflet)
+leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(lat = 51.4560, lng = -1.4136)
+```
+
+### Chart C
+```{r}
+library(leaflet)
+leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(lat = 51.4560, lng = -1.4136)
+```
+
+# Page 2 
+## Row {data-width=100}
+### Chart B
+
+```{r}
+babynames %>% filter(name=="Zhi") %>% print()
+```
+
+## Row {data-width=100}
+### Chart B
+
+```{r}
+babynames %>% filter(name=="Zhi") %>% print()
+```
+
+### Chart B
+
+```{r}
+babynames %>% filter(name=="Zhi") %>% print()
+```
+
+
