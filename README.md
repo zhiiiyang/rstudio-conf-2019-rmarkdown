@@ -5,4 +5,5 @@ https://arm.rbind.io/days/day1/
 ## Day 2
 https://arm.rbind.io/days/day2/
 
-- Yihui Xie, https://bit.ly/arm-xie
+- Slides: http://bit.ly/arm-xie
+- Examples: http://bit.ly/arm-exm
